@@ -12,28 +12,9 @@ const cards = document.querySelectorAll(".card"),
 imageBackground.setAttribute("data-img", imageList);
 
 let numb = 0;
-let img = document
-  .querySelector(".shop-bg")
-  .getAttribute("data-img")
-  .split(",")
-  .slice(0, 3);
-
-(function() {
-  if (document.querySelector(".shop-bg").length) {
-    if (document.querySelector(".shop-bg").getAttribute("data-img").length) {
-      let startImgListPreoload = document
-        .querySelector(".shop-bg")
-        .getAttribute("data-img")
-        .split(",")
-        .slice(0, 3);
-      let url = `url("${startImgListPreoload[0]}")`;
-      document.querySelector(".shop-bg").style.backgroundImage = url;
-    }
-  }
-})();
 
 cards.forEach(e => {
-  e.addEventListener("mouseover", () => {
+  e.addEventListener("mouseover", elem => {
     let img = document
       .querySelector(".shop-bg")
       .getAttribute("data-img")
@@ -46,5 +27,9 @@ cards.forEach(e => {
     let url = `url("${currImg}")`;
 
     document.querySelector(".shop-bg").style.backgroundImage = url;
+    elem.target.classList.add("active");
+  });
+  e.addEventListener("mouseout", elem => {
+    elem.target.classList.remove("active");
   });
 });
